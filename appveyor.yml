@@ -1,32 +1,59 @@
-version: pythonocc-core-0.16.3-dev.{build}
+version: pythonocc-core-0.16.5-dev.{build}
 
 environment:
-  env:
+  oce_version: 0.16.1
   matrix:
-    - python_version: "2.7"
-      CONDA_PY: "27"
-    - python_version: "3.5m"
-      CONDA_PY: "35"
+    - generator: "MSYS Makefiles"
+      Compiler: MinGW-gcc-4.8.1
+      ARCH: "Win32"
+    - generator: "MSYS Makefiles"
+      ARCH: "i686"
+      Compiler: MinGW-gcc-4.9.3
+    - generator: "MSYS Makefiles"
+      ARCH: "Win64"
+      Compiler: MinGW64-gcc-5.2.0
+    - generator: "Visual Studio 12"
+      ARCH: "Win32"
+      Compiler: "MSVC2013"
+    - generator: "Visual Studio 12 Win64"
+      ARCH: "Win64"
+      Compiler: "MSVC2013"
+    - generator: "Visual Studio 14"
+      ARCH: "Win32"
+      Compiler: "MSVC2015"
+    - generator: "Visual Studio 14 Win64"
+      ARCH: "Win64"
+      Compiler: "MSVC2015"
 
-# scripts that run after cloning repository
-install:
-  # this installs the appropriate Miniconda (Py2/Py3, 32/64 bit),
-  # as well as pip, conda-build, and the binstar CLI
-  - powershell .\\ci\\appveyor\\appveyor_install_conda.ps1
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-   # download/install OCE from DLR-SC channel
-  - conda config --add channels https://conda.anaconda.org/dlr-sc
-  # install everything required to build the receipe
-  - conda install conda-build anaconda-client
+cache:
+  - i686-4.9.3-release-posix-dwarf-rt_v4-rev1.7z
+  - x86_64-5.2.0-release-posix-seh-rt_v4-rev0.7z
+  - OCE-0.16.1-Mingw32.zip
 
-script:
-  - conda build ci/conda
+configuration:
+  #- Debug
+  - RelWithDebInfo
 
 branches:
   only:
     - master
     - /^review/
+
+shallow_clone: true 
+
+init:
+
+before_build:
+
+build_script:
+  - cmd: if "%generator%" == "MSYS Makefiles" (C:\MinGW\msys\1.0\bin\sh --login /c/projects/pythonocc-core/ci/appveyor/make-pythonocc-core-msys.sh)
+      else (CALL C:\projects\pythonocc-core\ci\appveyor\make-pythonocc-core-msvc.bat)
+
+#after_build:
+#  - cmd: 7z a oce-%oce_version%.%ARCH%.%Compiler%.zip C:\oce-%oce_version% > nul
+#  - cmd: dir oce-%oce_version%.%ARCH%.%Compiler%.zip
+#
+#artifacts:
+#  - path: oce-%oce_version%.%ARCH%.%Compiler%.zip
+
+test: off  # to avoid discovering tests
