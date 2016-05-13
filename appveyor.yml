@@ -48,7 +48,7 @@ before_build:
 install:
 
   ## Use Chocolatey to install SWIG.
-  - choco install swig --version 3.0.6 -y
+  - choco install swig --version 3.0.6 -y > nul
 
 build_script:
   - cmd: if "%generator%" == "MSYS Makefiles" (C:\MinGW\msys\1.0\bin\sh --login /c/projects/pythonocc-core/ci/appveyor/make-pythonocc-core-msys.sh)

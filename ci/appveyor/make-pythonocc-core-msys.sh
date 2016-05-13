@@ -50,10 +50,11 @@ g++ -v
 cd /c/projects/pythonocc-core
 mkdir cmake-build
 cd cmake-build
-cmake -DOCE_INCLUDE_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\include\\oce \
-      -DOCE_LIB_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\Win32\\lib \
+cmake -DOCE_DIR=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\cmake \
       -G'MSYS Makefiles' ..
-#      -DSWIG_EXECUTABLE=C:/projects/pythonocc-core/swigwin-3.0.8/swig.exe \
+#-DOCEINCLUDE_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\include\\oce \
+#      -DOCE_LIB_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\Win32\\lib \
+      #      -DSWIG_EXECUTABLE=C:/projects/pythonocc-core/swigwin-3.0.8/swig.exe \
 #      -DSWIG_DIR=C:/projects/pythonocc-core/swigwin-3.0.8/Lib \
 mingw32-make -j4
 mingw32-make install
