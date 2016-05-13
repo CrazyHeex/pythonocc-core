@@ -41,7 +41,7 @@ echo "Extracting $f"
 #
 echo "current directory"
 pwd
-ls C:/projectsC/pythonocc-core/OCE-0.16.1-Mingw32/cmake
+ls C:/projects/pythonocc-core/OCE-0.16.1-Mingw32/cmake
 #ls C:/projects/pythonocc-core/swigwin-3.0.8
 g++ -v
 # make pythonocc-core
@@ -50,7 +50,7 @@ g++ -v
 cd /c/projects/pythonocc-core
 mkdir cmake-build
 cd cmake-build
-cmake -DOCE_DIR=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\cmake \
+cmake -DOCE_DIR=C:/projects/pythonocc-core/OCE-0.16.1-Mingw32/cmake \
       -G'MSYS Makefiles' ..
 #-DOCEINCLUDE_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\include\\oce \
 #      -DOCE_LIB_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\Win32\\lib \
