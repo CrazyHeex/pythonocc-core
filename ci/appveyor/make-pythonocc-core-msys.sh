@@ -31,18 +31,18 @@ fi
 echo "Extracting $f"
 7z x $f > /dev/null
 # download/extract sig3.0.8
-f=swigwin-3.0.8.zip
-if ! [ -e $f ]; then
-  echo "Downloading $f"
-  curl -LsSO https://sourceforge.net/projects/swig/files/swigwin/swigwin-3.0.8/$f
-fi
-echo "Extracting $f"
-7z x $f > /dev/null
+#f=swigwin-3.0.8.zip
+#if ! [ -e $f ]; then
+#  echo "Downloading $f"
+#  curl -LsSO https://sourceforge.net/projects/swig/files/swigwin/swigwin-3.0.8/$f
+#fi
+#echo "Extracting $f"
+#7z x $f > /dev/null
 #
 echo "current directory"
 pwd
 ls C:/projects
-ls C:/projects/pythonocc-core/swigwin-3.0.8
+#ls C:/projects/pythonocc-core/swigwin-3.0.8
 g++ -v
 # make pythonocc-core
 # test if file is present
@@ -52,8 +52,8 @@ mkdir cmake-build
 cd cmake-build
 cmake -DOCE_INCLUDE_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\include\\oce \
       -DOCE_LIB_PATH=C\\projects\\pythonocc-core\\OCE-0.16.1-Mingw32\\Win32\\lib \
-      -DSWIG_EXECUTABLE=C:/projects/pythonocc-core/swigwin-3.0.8/swig.exe \
-      -DSWIG_DIR=C:/projects/pythonocc-core/swigwin-3.0.8/Lib \
       -G'MSYS Makefiles' ..
+#      -DSWIG_EXECUTABLE=C:/projects/pythonocc-core/swigwin-3.0.8/swig.exe \
+#      -DSWIG_DIR=C:/projects/pythonocc-core/swigwin-3.0.8/Lib \
 mingw32-make -j4
 mingw32-make install
