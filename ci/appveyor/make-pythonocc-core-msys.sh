@@ -41,7 +41,7 @@ echo "Extracting $f"
 #
 echo "current directory"
 pwd
-ls C:/projects
+ls C:/projectsC/pythonocc-core/OCE-0.16.1-Mingw32/cmake
 #ls C:/projects/pythonocc-core/swigwin-3.0.8
 g++ -v
 # make pythonocc-core
